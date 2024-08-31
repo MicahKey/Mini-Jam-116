@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://dgncsoulfbrtj"]
+[gd_scene load_steps=10 format=4 uid="uid://dgncsoulfbrtj"]
 
 [ext_resource type="PackedScene" uid="uid://cclsswgygspfd" path="res://scenes/background.tscn" id="1_2ngpc"]
+[ext_resource type="Script" path="res://scenes/test_level.gd" id="1_ov76n"]
 [ext_resource type="Texture2D" uid="uid://bxrc3gf01rpoo" path="res://assets/PixelFantasy_Caves_1.0/mainlev_build.png" id="2_t33fm"]
 [ext_resource type="PackedScene" uid="uid://diwn515d8ukdw" path="res://characters/player.tscn" id="3_ydio7"]
 [ext_resource type="PackedScene" uid="uid://bobnu1bk3nado" path="res://characters/goblin.tscn" id="4_kkbks"]
 [ext_resource type="PackedScene" uid="uid://blurpc1u70hsm" path="res://scenes/ui.tscn" id="5_exvpi"]
+[ext_resource type="PackedScene" uid="uid://dosxqwivcfsts" path="res://scenes/game_over.tscn" id="6_iivbv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_obgwf"]
 texture = ExtResource("2_t33fm")
@@ -930,6 +932,7 @@ sources/0 = SubResource("TileSetAtlasSource_obgwf")
 [node name="Test_Level" type="Node2D"]
 texture_filter = 1
 scale = Vector2(2, 2)
+script = ExtResource("1_ov76n")
 
 [node name="Background" parent="." instance=ExtResource("1_2ngpc")]
 
@@ -945,3 +948,7 @@ scale = Vector2(2, 2)
 position = Vector2(269, 174.5)
 
 [node name="UI" parent="." instance=ExtResource("5_exvpi")]
+
+[node name="GameOver" parent="." instance=ExtResource("6_iivbv")]
+unique_name_in_owner = true
+visible = false
