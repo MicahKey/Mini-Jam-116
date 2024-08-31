@@ -25,12 +25,11 @@ func take_damage():
 	HIT_STUN = true
 	HP -= 1
 	
-	if LAST_DIR > 0:
-		print('right')
-	elif LAST_DIR < 0:
-		print('left')
+	if ATTACKING:
+		stop_attack()
 	
-	position.x += 10 * LAST_DIR
+	velocity.x = 0
+	position.x += 10 * LAST_DIR * -1
 	
 	if HP <= 0:
 		death()
@@ -38,6 +37,7 @@ func take_damage():
 		%animation.play('hit')
 
 func death():
+	velocity.y = -200
 	%animation.play('death')
 
 func stop_attack():

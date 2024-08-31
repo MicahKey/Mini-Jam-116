@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://dgncsoulfbrtj"]
+[gd_scene load_steps=8 format=4 uid="uid://dgncsoulfbrtj"]
 
 [ext_resource type="PackedScene" uid="uid://cclsswgygspfd" path="res://scenes/background.tscn" id="1_2ngpc"]
 [ext_resource type="Texture2D" uid="uid://bxrc3gf01rpoo" path="res://assets/PixelFantasy_Caves_1.0/mainlev_build.png" id="2_t33fm"]
 [ext_resource type="PackedScene" uid="uid://diwn515d8ukdw" path="res://characters/player.tscn" id="3_ydio7"]
 [ext_resource type="PackedScene" uid="uid://bobnu1bk3nado" path="res://characters/goblin.tscn" id="4_kkbks"]
+[ext_resource type="PackedScene" uid="uid://blurpc1u70hsm" path="res://scenes/ui.tscn" id="5_exvpi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_obgwf"]
 texture = ExtResource("2_t33fm")
@@ -942,3 +943,5 @@ scale = Vector2(2, 2)
 
 [node name="enemy" parent="." instance=ExtResource("4_kkbks")]
 position = Vector2(269, 174.5)
+
+[node name="UI" parent="." instance=ExtResource("5_exvpi")]

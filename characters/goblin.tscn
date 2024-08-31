@@ -260,14 +260,14 @@ size = Vector2(35.3333, 20)
 [node name="enemy" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
-collision_layer = 17
-collision_mask = 17
+collision_layer = 48
+collision_mask = 48
 script = ExtResource("1_puuq7")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_vcoms")
-animation = &"run"
+animation = &"death"
 autoplay = "idle"
 
 [node name="Shape" type="CollisionShape2D" parent="."]
