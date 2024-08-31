@@ -944,11 +944,11 @@ tile_set = SubResource("TileSet_nsaii")
 position = Vector2(40.5, 170)
 scale = Vector2(2, 2)
 
-[node name="enemy" parent="." instance=ExtResource("4_kkbks")]
-position = Vector2(269, 174.5)
-
 [node name="UI" parent="." instance=ExtResource("5_exvpi")]
 
 [node name="GameOver" parent="." instance=ExtResource("6_iivbv")]
 unique_name_in_owner = true
 visible = false
+
+[node name="enemy" parent="." instance=ExtResource("4_kkbks")]
+position = Vector2(373.5, 152.5)

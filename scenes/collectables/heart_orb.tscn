@@ -1,17 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://drl2atqdutont"]
+[gd_scene load_steps=4 format=3 uid="uid://drl2atqdutont"]
 
+[ext_resource type="Script" path="res://scenes/collectables/heart_orb.gd" id="1_5e4ja"]
 [ext_resource type="Texture2D" uid="uid://dmyjih1w7mg5s" path="res://assets/Heart&ManaUi.png" id="1_7jps6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ap1x"]
-radius = 6.0
+radius = 5.0
 
 [node name="Heart_Orb" type="Area2D"]
 texture_filter = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_5e4ja")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7jps6")
 region_enabled = true
-region_rect = Rect2(21, 2, 11, 9)
+region_rect = Rect2(21, 13, 10, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7ap1x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

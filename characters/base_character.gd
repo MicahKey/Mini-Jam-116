@@ -67,7 +67,8 @@ func move(direction: int):
 
 func shift_hitbox(direction):
 	%SwordHitbox.position.x = abs(%SwordHitbox.position.x) * direction
+	
+	# For goblin
 	if %HitRange:
 		%HitRange.position.x = abs(%HitRange.position.x) * direction
-
 ### Connects ###

@@ -3,6 +3,7 @@ extends "res://characters/base_character.gd"
 ### Variables ###
 var ATK_COUNT: int = 1
 var SLIDING: bool = false
+var ATK_PARRIED: bool = false
 
 ### Methods ###
 func _ready() -> void:
@@ -19,7 +20,10 @@ func attack():
 	await get_tree().create_timer(0.15).timeout
 	%SwordHitbox.disabled = false
 	position.x += 5 * LAST_DIR
+
+	%ATK_Timer.start()
 	
+
 
 func slide():
 	self.set_collision_layer_value(6, false)
@@ -42,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	
 	if !HIT_STUN:
 		# Jump
-		if Input.is_action_pressed('jump') && is_on_floor():
+		if Input.is_action_pressed('jump') && is_on_floor() && !ATTACKING:
 			jump()
 		
 		# Falling and Landing
@@ -58,6 +62,7 @@ func _physics_process(delta: float) -> void:
 			if direction:
 				move(direction)
 				shift_hitbox(direction)
+				%ParryHitbox.position.x = abs(%ParryHitbox.position.x) * direction
 			else:
 				velocity.x = 0
 				if !JUMPING:
@@ -87,13 +92,9 @@ func _on_animation_animation_finished() -> void:
 	elif %animation.animation == 'attack_' + str(ATK_COUNT):
 		velocity.x = 0
 		%SwordHitbox.disabled = true
-		if Input.is_action_pressed('attack') && !HIT_STUN:
-			if ATK_COUNT >= 3:
-				ATK_COUNT = 0
-			ATK_COUNT += 1
-			attack()
-		else:
-			ATTACKING = false
+		ATTACKING = false
+		ATK_COUNT += 1
+		if ATK_COUNT > 3:
 			ATK_COUNT = 1
 	
 	elif %animation.animation == 'slide':
@@ -105,3 +106,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == 'SwordHitboxArea':
 		if HP > 0:
 			take_damage()
+
+func _on_atk_timer_timeout() -> void:
+	if !ATTACKING:
+		ATK_COUNT = 1
