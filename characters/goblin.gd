@@ -8,7 +8,18 @@ var COOLDOWN: bool = false
 func _ready() -> void:
 	HP = 3
 	SPEED = 200
+	
 	%SwordHitbox.disabled = true
+	%HealthBar.max_value = HP
+	%DamageBar.max_value = HP
+	fix_health()
+	fix_damage()
+
+func fix_health():
+	%HealthBar.value = HP
+
+func fix_damage():
+	%DamageBar.value = HP
 
 func attack():
 	ATTACKING = true
@@ -56,6 +67,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			if ATTACKING:
 				stop_attack()
 			take_damage()
+			fix_health()
+			%HurtTimer.start()
 
 func _on_animation_animation_finished() -> void:
 	if %animation.animation == 'hit':
@@ -73,8 +86,8 @@ func _on_animation_animation_finished() -> void:
 		%HitRange.disabled = false
 	
 	elif %animation.animation == 'death':
-		self.set_collision_layer_value(1, false)
-		self.set_collision_mask_value(1, false)
+		self.set_collision_layer_value(6, false)
+		self.set_collision_mask_value(6, false)
 		
 		await get_tree().create_timer(2).timeout
 		queue_free()
@@ -84,3 +97,7 @@ func _on_hit_range_body_entered(body: Node2D) -> void:
 	if body.name == 'player':
 		if !HIT_STUN:
 			attack()
+
+
+func _on_hurt_timer_timeout() -> void:
+	fix_damage()

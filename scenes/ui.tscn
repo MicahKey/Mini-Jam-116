@@ -1,9 +1,67 @@
-[gd_scene format=3 uid="uid://blurpc1u70hsm"]
+[gd_scene load_steps=2 format=3 uid="uid://blurpc1u70hsm"]
+
+[ext_resource type="Texture2D" uid="uid://dmyjih1w7mg5s" path="res://assets/Heart&ManaUi.png" id="1_1j7gk"]
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="Health_Label" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+texture_filter = 1
+offset_left = 21.0
+offset_top = 15.0
+offset_right = 91.0
+offset_bottom = 25.0
+scale = Vector2(3, 3)
+
+[node name="Heart_1_e" type="Sprite2D" parent="HBoxContainer"]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Health: "
+position = Vector2(18.3333, 0.333333)
+texture = ExtResource("1_1j7gk")
+centered = false
+region_enabled = true
+region_rect = Rect2(33, 2, 11, 9)
+
+[node name="Heart_1" type="Sprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(18.3333, 0.333333)
+texture = ExtResource("1_1j7gk")
+centered = false
+region_enabled = true
+region_rect = Rect2(21, 2, 11, 9)
+
+[node name="Heart_2_e" type="Sprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(30.3333, 0.333333)
+texture = ExtResource("1_1j7gk")
+centered = false
+region_enabled = true
+region_rect = Rect2(33, 2, 11, 9)
+
+[node name="Heart_2" type="Sprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(30.3333, 0.333333)
+texture = ExtResource("1_1j7gk")
+centered = false
+region_enabled = true
+region_rect = Rect2(21, 2, 11, 9)
+
+[node name="Heart_3_e" type="Sprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(42.3333, 0.333333)
+texture = ExtResource("1_1j7gk")
+centered = false
+region_enabled = true
+region_rect = Rect2(33, 2, 11, 9)
+
+[node name="Heart_3" type="Sprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(42.3333, 0.333333)
+texture = ExtResource("1_1j7gk")
+centered = false
+region_enabled = true
+region_rect = Rect2(21, 2, 11, 9)
+
+[node name="Health" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(9, 5.33333)
+texture = ExtResource("1_1j7gk")
+region_enabled = true
+region_rect = Rect2(2, 2, 16, 10)

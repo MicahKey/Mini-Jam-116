@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bobnu1bk3nado"]
+[gd_scene load_steps=46 format=3 uid="uid://bobnu1bk3nado"]
 
 [ext_resource type="Texture2D" uid="uid://b8o1enqv44q8y" path="res://assets/Goblin/Idle.png" id="1_axsgx"]
 [ext_resource type="Script" path="res://characters/goblin.gd" id="1_puuq7"]
@@ -257,6 +257,19 @@ size = Vector2(28, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwo3u"]
 size = Vector2(35.3333, 20)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4oh8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf0k4"]
+bg_color = Color(0.243137, 0.698039, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdf48"]
+bg_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7w5a"]
+bg_color = Color(0.843137, 0.843137, 0.843137, 1)
+
 [node name="enemy" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
@@ -297,6 +310,39 @@ unique_name_in_owner = true
 position = Vector2(17.6667, 10)
 shape = SubResource("RectangleShape2D_rwo3u")
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+z_index = 1
+texture_filter = 1
+offset_left = -11.0
+offset_top = -14.0
+offset_right = 11.0
+offset_bottom = -12.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_e4oh8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qf0k4")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="DamageBar" type="ProgressBar" parent="HealthBar"]
+unique_name_in_owner = true
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hdf48")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a7w5a")
+step = 1.0
+show_percentage = false
+
+[node name="HurtTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.7
+
 [connection signal="animation_finished" from="animation" to="." method="_on_animation_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="HitRange" to="." method="_on_hit_range_body_entered"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
